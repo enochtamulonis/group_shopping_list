@@ -16,12 +16,6 @@ class ShoppingList < ApplicationRecord
     self.random_key = Time.now.to_i
   end
 
-  def is_completed
-    items_collected = shopping_list_items.select { |item| item.collected == true }.count
-    return false if items_collected == 0
-    shopping_list_items.count % items_collected == 0
-  end
-
   private
 
   def set_random_key
