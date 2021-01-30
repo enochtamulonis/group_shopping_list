@@ -1,5 +1,5 @@
 <%= turbo_frame_tag dom_id(shopping_list_item) do %>
-  <div class="bg-green-500 flex items-center px-12 h-20 w-full py-2 border-b-4 border-<%= shopping_list_color(shopping_list_item.collected) %>">
+  <div class="bg-green-500 flex items-center px-12 h-20 w-full py-2 border-b-4 <%= list_item_border_color(shopping_list_item.collected) %>">
     <%= shopping_list_item.name %>
     <p class="ml-auto"> qty: <%= shopping_list_item.amount %> </p>
     <%= form_with model: [shopping_list_item.shopping_list, shopping_list_item], data: {controller: "shopping-list-item-form"}, class: "ml-4" do |f| %>

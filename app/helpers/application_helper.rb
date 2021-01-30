@@ -1,9 +1,9 @@
 module ApplicationHelper
-  def shopping_list_color(completed)
+  def list_item_border_color(completed)
     if completed
-      "green-600"
+      "border-green-600"
     else
-      "gray-200"
+      "border-gray-200"
     end
   end
 end
