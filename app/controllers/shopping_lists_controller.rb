@@ -1,9 +1,11 @@
 class ShoppingListsController < ApplicationController
   before_action :set_shopping_list, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
+
+  before_action :is_user_a_member?, only: [:show]
   # GET /shopping_lists or /shopping_lists.json
   def index
-    @shopping_lists = ShoppingList.all
+    @shopping_lists = current_user.shopping_lists.push current_user.joined_lists
   end
 
   # GET /shopping_lists/1 or /shopping_lists/1.json
@@ -22,7 +24,7 @@ class ShoppingListsController < ApplicationController
   # POST /shopping_lists or /shopping_lists.json
   def create
     @shopping_list = ShoppingList.new(shopping_list_params)
-    @shopping_list.user = current_user
+    @shopping_list.creator = current_user
     respond_to do |format|
       if @shopping_list.save
         format.html { redirect_to @shopping_list, notice: "Shopping list was successfully created." }
@@ -65,5 +67,19 @@ class ShoppingListsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def shopping_list_params
       params.require(:shopping_list).permit(:title, :completed)
+    end
+
+    def is_user_a_member?
+      return true if @shopping_list.joined_members.find_by_id(current_user.id) || @shopping_list.creator == current_user
+      if params[:key] == @shopping_list.random_key
+        set_current_user_as_member
+      else
+        redirect_to root_path
+      end
+    end
+
+    def set_current_user_as_member
+      Membership.new(user: current_user, shopping_list: @shopping_list)
+      redirect_to @shopping_list
     end
 end

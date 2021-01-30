@@ -6,6 +6,12 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: { case_sensitive: false }
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
 
+  has_many  :shopping_lists
+  has_many :shopping_list_items
+  
+  has_many :memberships
+  has_many :joined_lists, :through => :memberships, source: :shopping_list
+
   private
 
   def self.find_for_database_authentication(warden_conditions)

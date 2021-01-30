@@ -1,0 +1,13 @@
+
+<div class="w-full md:w-3/4 mx-auto bg-gray-300 my-10 py-4">
+  <h1 class="text-center">Join a Shopping List</h1>
+
+  <div class="w-full min-h-10 bg-gray-300">
+    <%= form_with model: @membership, :class => "flex flex-col w-full my-2 px-8" do |form| %>
+      <%= form.label :shopping_list_key, class: "block" %>
+      <%= form.text_field :shopping_list_key, :class => "mt-2 border-0 py-2 w-full", required: "required", placeholder: "Enter a shopping list key" %>
+      <%= form.submit "Join list", :class => "w-40 mt-2 bg-transparent px-2 py-1 border-2 border-black cursor-pointer hover:text-gray-700" %>
+    <% end %>
+  </div>
+
+</div>

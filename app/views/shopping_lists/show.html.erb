@@ -6,8 +6,13 @@
         <%= link_to new_shopping_list_shopping_list_item_path(@shopping_list), class: "ml-auto" do %>
           Add Item <i class="far fa-plus-square"></i>
         <% end %>
-        <%= link_to edit_shopping_list_path(@shopping_list), class: "ml-6" do %>
-          <i class="fa fa-pencil-alt"></i>
+        <% if current_user == @shopping_list.creator %>
+          <%= link_to edit_shopping_list_path(@shopping_list), class: "ml-6" do %>
+            <i class="fa fa-pencil-alt"></i>
+          <% end %>
+          <%= link_to components_share_list_path(id: @shopping_list.id), class: "ml-6" do %>
+            <i class="fas fa-share-square"></i>
+          <% end %>
         <% end %>
     </div>
   <% end %>

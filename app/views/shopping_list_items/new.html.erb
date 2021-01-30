@@ -7,8 +7,8 @@
         <%= form.text_field :name, placeholder: "Item name: Loaf of bread ...", class: "w-full", required: "required" %>
       </div>
 
-      <div class="field mr-2">
-        <%= form.label :quantity, class: "hidden md:inline" %>
+      <div class="field mr-2 flex flex-nowrap items-center">
+        <%= form.label :quantity, class: "hidden md:inline-block" %>
         <%= form.number_field :amount, placeholder: "Amount: 50", class: "ml-2 w-20", value: 1, min: 1, required: "required" %>
       </div>
 

@@ -3,7 +3,7 @@
     <div class="relative flex flex-col ml-auto" data-controller="dropdown">
       <a class="ml-auto text-gray-200 cursor-pointer select-none" data-action="dropdown#toggleDropdown"> <%= current_user.username %> </a>
       <div class="h-full w-40 md:w-60 ml-auto flex flex-col items-center bg-gray-400 py-2" data-dropdown-target="menu">
-        <%= button_to "sign out", destroy_user_session_path, class: "bg-transparent border-b-2 border-transparent hover:border-gray-200 transition-colors ease-in duration-300", method: :delete %>
+        <%= button_to "sign out", destroy_user_session_path, class: "bg-transparent border-b-2 border-transparent hover:border-gray-200 transition-colors ease-in duration-300", method: :delete, data: {action: "dropdown#signOutRedirect"}%>
       </div>
     </div>
   </div>
