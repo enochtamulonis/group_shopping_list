@@ -1,0 +1,11 @@
+<%= turbo_frame_tag dom_id(shopping_list) do %>
+  <div class="flex py-4 px-2 w-full">
+      <%= shopping_list.title %>
+      <%= link_to new_shopping_list_shopping_list_item_path(shopping_list), class: "ml-auto" do %>
+        Add Item <i class="far fa-plus-square"></i>
+      <% end %>
+      <%= link_to edit_shopping_list_path(shopping_list), class: "ml-6" do %>
+        <i class="fa fa-pencil-alt"></i>
+      <% end %>
+  </div>
+<% end %>

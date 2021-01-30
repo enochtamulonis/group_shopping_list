@@ -1,0 +1,20 @@
+<%= form_with(model: shopping_list, html: {class: "px-8"}) do |form| %>
+  <% if shopping_list.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+        <% shopping_list.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title, class: "block" %>
+    <%= form.text_field :title, class: "w-full" %>
+  </div>
+
+  <div class="actions my-2">
+    <%= form.submit :class => "bg-transparent py-1 px-2 border-2 border-gray-700 cursor-pointer" %>
+  </div>
+<% end %>

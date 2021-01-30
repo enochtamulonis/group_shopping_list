@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GroupShoppingList</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbo-track': 'reload' %>
+  </head>
+
+  <body class="bg-gray-600">
+    <%= render "layouts/user_navbar" if current_user %>
+    <div class="w-full h-full md:w-3/4 lg:w-2/3 mx-auto mt-20">
+      <%= render "layouts/alerts" %>
+      <%= render "layouts/navbar" if current_user %>
+      <%= yield %>
+    </div>
+  </body>
+</html>

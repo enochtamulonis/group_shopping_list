@@ -1,0 +1,7 @@
+<% if flash[:notice].present? %>
+  <p  class="notice text-center absolute top-0 left-0 w-full bg-gray-300 flex flex-col pl-2"><%= flash[:notice] %></p>
+<% end %>
+
+<% if flash[:alert].present? %>
+  <p  class="alert text-center absolute top-0 left-0 w-full bg-gray-300 flex flex-col pl-2"><%= flash[:alert] %></p>
+<% end %>

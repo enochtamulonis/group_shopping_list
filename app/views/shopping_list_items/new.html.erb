@@ -1,0 +1,23 @@
+<h1>New Shopping List Item</h1>
+<%= turbo_frame_tag dom_id(@shopping_list) do %>
+  <div class="flex items-center px-2">
+    <%= form_with model:[@shopping_list, @shopping_list.shopping_list_items.new], html: { class: "flex flex-grow pr-2 py-2" } do |form| %>
+      <div class="field flex items-center flex-grow pr-4">
+        <%= form.label :item_name, class: "flex-shrink-0 mr-2 hidden md:flex" %>
+        <%= form.text_field :name, placeholder: "Item name: Loaf of bread ...", class: "w-full", required: "required" %>
+      </div>
+
+      <div class="field mr-2">
+        <%= form.label :quantity, class: "hidden md:inline" %>
+        <%= form.number_field :amount, placeholder: "Amount: 50", class: "ml-2 w-20", value: 1, min: 1, required: "required" %>
+      </div>
+
+      <div class="actions flex items-center mx-2">
+        <%= form.submit "Add Item", class: "px-2 bg-transparent border-b-2 border-green-300" %>
+      </div>
+    <% end %>
+    <%= link_to @shopping_list do %>
+      <i class="fa fa-times"></i>
+    <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,28 @@
+<div class="w-full md:w-3/4 mx-auto bg-gray-300 px-8 py-4" data-controller="authentication-form">
+  <h2 class="text-center">Sign up</h2>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: "false" }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="field">
+      <%= f.label :username %><br />
+      <%= f.text_field :username, autofocus: true, autocomplete: "username", class: "w-full" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "new-password", class: "w-full", data: {authentication_form_target: "passwordField"} %>
+    </div>
+    <div class="flex items-center my-2">
+      <input class="mr-2" type="checkbox" data-action="authentication-form#togglePasswordVisibility">Show Password
+    </div>
+    <div class="actions mt-4 mb-2">
+      <%= f.submit "Sign up", :class => "bg-transparent px-4 py-1 border-2 border-gray-600 cursor-pointer" %>
+    </div>
+  <% end %>
+
+  <%= render "devise/shared/links" %>
+</div>

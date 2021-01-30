@@ -1,0 +1,22 @@
+<div class="w-full h-screen mt-4 bg-gray-300">
+  <%= turbo_stream_from "shopping_lists" %>
+  <%= turbo_frame_tag dom_id(@shopping_list) do %>
+    <div class="flex py-4 px-2 w-full">
+        <%= @shopping_list.title %>
+        <%= link_to new_shopping_list_shopping_list_item_path(@shopping_list), class: "ml-auto" do %>
+          Add Item <i class="far fa-plus-square"></i>
+        <% end %>
+        <%= link_to edit_shopping_list_path(@shopping_list), class: "ml-6" do %>
+          <i class="fa fa-pencil-alt"></i>
+        <% end %>
+    </div>
+  <% end %>
+  <div class="flex flex-col">
+    <%= turbo_stream_from "shopping_list_items" %>
+    <%= turbo_frame_tag "shopping_list_items" do %>
+      <% @shopping_list.shopping_list_items.reload.order("created_at desc").each do |shopping_list_item| %>
+        <%= render "shopping_list_items/shopping_list_item", :shopping_list_item => shopping_list_item %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

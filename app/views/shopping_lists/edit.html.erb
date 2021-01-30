@@ -1,0 +1,31 @@
+<h1>Editing Shopping List</h1>
+
+<%= turbo_frame_tag dom_id(@shopping_list) do %>
+  <div class="flex items-center px-2">
+    <%= form_with(model: @shopping_list, html: {class: "flex flex-grow pr-2 py-2"}) do |form| %>
+      <% if @shopping_list.errors.any? %>
+        <div id="error_explanation" class="absolute top-0 left-0 text-center py-2 bg-gray-200">
+          <ul>
+            <% @shopping_list.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="field flex items-center flex-grow">
+        <%= form.label :title %>
+        <%= form.text_field :title, class: "mx-2 w-full" %>
+      </div>
+
+      <div class="actions mx-2 flex items-center">
+        <%= form.submit "Update List", :class => "mr-2 bg-transparent px-2 border-b-2 border-gray-700 cursor-pointer" %>
+      </div>
+    <% end %>
+    <%= link_to @shopping_list do %>
+      <i class="fa fa-times"></i>
+    <% end %>
+  </div>
+<% end %>
+<%= link_to 'Show', @shopping_list %> |
+<%= link_to 'Back', shopping_lists_path %>

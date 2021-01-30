@@ -1,0 +1,8 @@
+<div class="px-4 md:px-0 flex justify-between w-full h-10 text-gray-200">
+  <a href="/">Home</a>
+  <% if current_user %>
+    <%= link_to new_shopping_list_path, class: "ml-auto" do %>
+      new list <i class="fa fa-list-alt"></i>
+    <% end %>
+  <% end %>
+</div>

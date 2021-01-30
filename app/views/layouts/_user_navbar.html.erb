@@ -1,0 +1,5 @@
+<%= turbo_frame_tag "user_dropdown" do %>
+  <div class="absolute top-0 left-0 w-full flex pr-4 pt-8">
+    <a href="<%= components_user_dropdown_content_path %>" class="ml-auto text-gray-200"><%= current_user.username %></a>
+  </div>
+<% end %>

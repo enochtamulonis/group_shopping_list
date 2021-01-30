@@ -1,0 +1,8 @@
+<%= turbo_frame_tag dom_id(@shopping_list_item) do %>
+  <div class="bg-green-500 flex items-center px-12 h-20 w-full py-2 border-b-4 border-<%= shopping_list_color(@shopping_list_item.collected) %>">
+    <%= @shopping_list_item.name %>
+    <%= form_with model: [@shopping_list_item.shopping_list, @shopping_list_item], data: {controller: "shopping-list-item-form"}, class: "ml-auto" do |f| %>
+      <%= f.check_box :collected, class: "h-6 w-6", data: {action: "shopping-list-item-form#submitForm"} %>
+    <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,10 @@
+<div class="w-full min-h-20 bg-green-200 my-10">
+  <% @shopping_lists.each do |shopping_list| %>
+    <div class="h-20 w-full flex items-center px-4">
+      <%= link_to shopping_list.title, shopping_list %>
+      <div class="ml-auto px-4 h-8 bg-<%= shopping_list_color(shopping_list.completed) %>">
+        <%= shopping_list.completed ? "Completed" : "In progress" %>
+      </div>
+    </div>
+  <% end %>
+</div>
