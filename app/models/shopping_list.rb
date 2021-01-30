@@ -3,8 +3,8 @@ class ShoppingList < ApplicationRecord
 
   has_many :shopping_list_items, dependent: :destroy
 
-  has_many :memberships
-  has_many :joined_members, :through => :memberships, source: :user
+  has_many :memberships, dependent: :destroy
+  has_many :joined_members, :through => :memberships, source: :user, dependent: :destroy
 
   validates :title, presence: true
 

@@ -5,7 +5,9 @@ class ShoppingListsController < ApplicationController
   before_action :is_user_a_member?, only: [:show]
   # GET /shopping_lists or /shopping_lists.json
   def index
-    @shopping_lists = current_user.shopping_lists.push current_user.joined_lists
+    users_shopping_lists = current_user.shopping_lists
+    users_joined_lists = current_user.joined_lists
+    @users_lists = users_shopping_lists + users_joined_lists
   end
 
   # GET /shopping_lists/1 or /shopping_lists/1.json
@@ -79,7 +81,7 @@ class ShoppingListsController < ApplicationController
     end
 
     def set_current_user_as_member
-      Membership.new(user: current_user, shopping_list: @shopping_list)
+      Membership.create(user: current_user, shopping_list: @shopping_list)
       redirect_to @shopping_list
     end
 end

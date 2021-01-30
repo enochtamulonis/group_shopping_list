@@ -1,17 +1,21 @@
 <div class="w-full min-h-20 bg-green-200 my-10">
-  <% if @shopping_lists.count == 0  %>
+  <% if @users_lists.count == 0  %>
     <div class="h-20 w-full flex items-center px-4">
       You have no shopping lists, create a new one or join someone elses
     </div>
   <% end %>
-  <% @shopping_lists.each do |shopping_list| %>
+  <% @users_lists.each do |shopping_list| %>
     <div class="h-20 w-full flex items-center px-4">
       <%= link_to shopping_list.title, shopping_list %>
       <% unless shopping_list.creator == current_user %>
         <p class="ml-auto"> <%= shopping_list.creator.username %>'s list </p>
       <% end %>
       <div class="ml-auto px-4 py-2 bg-<%= shopping_list_color(shopping_list.is_completed) %>">
-        <%= shopping_list.is_completed ? "Completed" : "In progress" %>
+        <% if !shopping_list.shopping_list_items.any? %>
+          Not Started
+        <% else %>
+          <%= shopping_list.is_completed ? "Completed" : "In progress" %>
+        <% end %>
       </div>
     </div>
   <% end %>
